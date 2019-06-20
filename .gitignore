@@ -3,6 +3,12 @@
 .idea
 target
 
+
+#ide file
+.classpath
+.project
+.settings/
+
 # Log file
 *.log
 
