@@ -14,19 +14,32 @@ public class BookRepository {
 
     public void addBooks(List<Book> books){
         //TODO implement the missing feature
+    	for (Book book : books) {
+		
+    		this.availableBooks.put(book.getIsbn(), book);
+		}
     }
 
     public Book findBook(long isbnCode) {
         //TODO implement the missing feature
-        return null;
+    	
+    	Book book = null;
+    	
+    	book = this.availableBooks.get(new ISBN(isbnCode));
+    	
+        return book;
     }
 
     public void saveBookBorrow(Book book, LocalDate borrowedAt){
         //TODO implement the missing feature
+    	
+    	this.borrowedBooks.put(book, borrowedAt);
     }
 
     public LocalDate findBorrowedBookDate(Book book) {
         //TODO implement the missing feature
-        return null;
+    	
+        return this.borrowedBooks.get(book);
     }
+    
 }
