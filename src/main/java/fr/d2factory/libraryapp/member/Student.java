@@ -6,12 +6,12 @@ import java.time.temporal.ChronoUnit;
 import fr.d2factory.libraryapp.book.Book;
 import fr.d2factory.libraryapp.book.BookRepository;
 import fr.d2factory.libraryapp.library.HasLateBooksException;
-import fr.d2factory.libraryapp.library.Library;
+
 
 /**
  * Student class
  */
-public class Student extends Member implements Library {
+public class Student extends Member {
 
 	
 	private BookRepository bookRepo;
@@ -22,9 +22,7 @@ public class Student extends Member implements Library {
 
 	protected boolean firstYear;
 
-	public Student() {
-	}
-	
+	public Student() {}
 	
 	public boolean isFirstYear() {
 		return firstYear;
