@@ -7,6 +7,7 @@ import fr.d2factory.libraryapp.book.Book;
 import fr.d2factory.libraryapp.book.BookRepository;
 import fr.d2factory.libraryapp.library.HasLateBooksException;
 import fr.d2factory.libraryapp.library.Library;
+import fr.d2factory.libraryapp.library.LibraryImpl;
 
 /**
  * A member is a person who can borrow and return books to a {@link Library} A
@@ -16,9 +17,18 @@ public abstract class Member {
 	/**
 	 * An initial sum of money the member has
 	 */
-	protected float wallet;	
+	protected float wallet;
 
-	
+	private Library library;
+
+	public Library getLibrary() {
+		return library;
+	}
+
+	public void setLibrary(LibraryImpl library) {
+		this.library = library;
+	}
+
 	/**
 	 * The member should pay their books when they are returned to the library
 	 *
@@ -33,6 +43,5 @@ public abstract class Member {
 	public void setWallet(float wallet) {
 		this.wallet = wallet;
 	}
-	
 
 }

@@ -30,8 +30,10 @@ public class LibraryTest {
 	public void setup() {
 		// TODO instantiate the library and the repository
 
-		library = new LibraryImpl();
+
 		bookRepository = new BookRepository();
+		library = new LibraryImpl(bookRepository);
+		
 		List<Book> books = new ArrayList<Book>();
 
 		// TODO add some test books (use BookRepository#addBooks)
@@ -55,7 +57,7 @@ public class LibraryTest {
 		Book book = bookRepository.findBook(isbnCode);
 
 		//student.setBookRepo(bookRepository);
-		student.setLibrary(library);
+		student.setLibrary((LibraryImpl) library);
 		
 
 		LocalDateTime currentTime = LocalDateTime.now();
@@ -82,7 +84,7 @@ public class LibraryTest {
 		//
 		Book book = bookRepository.findBook(isbnCode);
 
-		student.setLibrary(library);
+		student.setLibrary((LibraryImpl) library);
 
 		LocalDate borrowDate = LocalDate.of(2019, Month.JUNE , 30);
 
@@ -135,14 +137,14 @@ public class LibraryTest {
 		//
 		Book book = bookRepository.findBook(isbnCode);
 
-		student.setLibrary(library);
+		student.setLibrary((LibraryImpl) library);
 
 		LocalDate borrowDate = LocalDate.of(2019, Month.MAY, 25);
 
 		Book bookBorrowed = student.getLibrary().borrowBook(isbnCode, student,  borrowDate);
 		student.getLibrary().returnBook(bookBorrowed, student);
 		
-		Assert.assertEquals(405.0, student.getWallet(), 0.01);
+		Assert.assertEquals(420.0, student.getWallet(), 0.01);
 		
 	}
 
@@ -168,7 +170,7 @@ public class LibraryTest {
 		//
 		Book book = bookRepository.findBook(isbnCode);
 
-		student.setLibrary(library);
+		student.setLibrary((LibraryImpl) library);
 
 		LocalDate borrowDate = LocalDate.of(2019, Month.MAY, 25);
 

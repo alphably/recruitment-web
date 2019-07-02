@@ -16,9 +16,11 @@ public class LibraryImpl implements Library {
 	
 	private BookRepository bookRepo;
 
-	public void setBookRepo(BookRepository bookRepo) {
-		this.bookRepo = bookRepo;
+	public LibraryImpl(BookRepository BookRepository) {
+		this.bookRepo = BookRepository;
 	}
+	
+	
 
 
 	public Book borrowBook(long isbnCode, Member member, LocalDate borrowedAt) throws HasLateBooksException {

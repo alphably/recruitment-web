@@ -12,23 +12,7 @@ import fr.d2factory.libraryapp.library.LibraryImpl;
  */
 public class Student extends Member {
 
-	
-	//private BookRepository bookRepo;
-	private Library library;
-	
-	//public Student() {}
-	
-//	public void setBookRepo(BookRepository bookRepo) {
-//		this.bookRepo = bookRepo;
-//	}
 
-	public Library getLibrary() {
-		return library;
-	}
-
-	public void setLibrary(Library library) {
-		this.library = library;
-	}
 
 	protected boolean firstYear;
 
