@@ -30,6 +30,7 @@ public class LibraryTest {
 	public void setup() {
 		// TODO instantiate the library and the repository
 
+		library = new LibraryImpl();
 		bookRepository = new BookRepository();
 		List<Book> books = new ArrayList<Book>();
 
@@ -53,14 +54,16 @@ public class LibraryTest {
 		//
 		Book book = bookRepository.findBook(isbnCode);
 
-		student.setBookRepo(bookRepository);
+		//student.setBookRepo(bookRepository);
+		student.setLibrary(library);
+		
 
 		LocalDateTime currentTime = LocalDateTime.now();
 		LocalDate today = currentTime.toLocalDate();
 
 		// library = student;
 
-		Book bookBorrowed = student.borrowBook(isbnCode, today);
+		Book bookBorrowed = student.getLibrary().borrowBook(isbnCode, student, today);
 		// fail("Implement me");
 
 		Assert.assertEquals(book, bookBorrowed);
@@ -79,12 +82,12 @@ public class LibraryTest {
 		//
 		Book book = bookRepository.findBook(isbnCode);
 
-		student.setBookRepo(bookRepository);
+		student.setLibrary(library);
 
 		LocalDate borrowDate = LocalDate.of(2019, Month.JUNE , 30);
 
-		Book bookBorrowed = student.borrowBook(isbnCode, borrowDate);
-		Book sameBookBorrowed = anotherStudent.borrowBook(isbnCode, LocalDate.now());
+		Book bookBorrowed = student.getLibrary().borrowBook(isbnCode, student, borrowDate);
+		Book sameBookBorrowed = anotherStudent.getLibrary().borrowBook(isbnCode, student, LocalDate.now());
 		
 		
 	}
@@ -132,12 +135,12 @@ public class LibraryTest {
 		//
 		Book book = bookRepository.findBook(isbnCode);
 
-		student.setBookRepo(bookRepository);
+		student.setLibrary(library);
 
 		LocalDate borrowDate = LocalDate.of(2019, Month.MAY, 25);
 
-		Book bookBorrowed = student.borrowBook(isbnCode, borrowDate);
-		student.returnBook(bookBorrowed, student);
+		Book bookBorrowed = student.getLibrary().borrowBook(isbnCode, student,  borrowDate);
+		student.getLibrary().returnBook(bookBorrowed, student);
 		
 		Assert.assertEquals(405.0, student.getWallet(), 0.01);
 		
@@ -165,14 +168,14 @@ public class LibraryTest {
 		//
 		Book book = bookRepository.findBook(isbnCode);
 
-		student.setBookRepo(bookRepository);
+		student.setLibrary(library);
 
 		LocalDate borrowDate = LocalDate.of(2019, Month.MAY, 25);
 
-		Book bookBorrowed = student.borrowBook(isbnCode, borrowDate);
+		Book bookBorrowed = student.getLibrary().borrowBook(isbnCode, student,  borrowDate);
 		//student.returnBook(bookBorrowed, student);
 		// another borrow
-		Book bookBorrowedSecond = student.borrowBook(3326456467846l, LocalDate.now());
+		Book bookBorrowedSecond = student.getLibrary().borrowBook(3326456467846l, student,  LocalDate.now());
 
 	}
 }
